@@ -1,1 +1,1 @@
-<html>Hi,  Twój produkt:  ${name} , z kategorii  ${category} kosztuje ${price}. A tu jest opis tego produktu ${description}</html>
+<html>Hi,  Twój produkt:  ${product} </html>
