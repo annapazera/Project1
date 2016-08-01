@@ -4,6 +4,7 @@ import spark.ModelAndView;
 import spark.Spark;
 import spark.template.freemarker.FreeMarkerEngine;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiFunction;
@@ -11,13 +12,19 @@ import java.util.function.BiFunction;
  * Created by Anna Kacprzak on 2016-07-29.
  */
 public class Project1 {
+
+
+
     public static void main(String[] args) {
+        ArrayList <Product> listaProduktow= new ArrayList<Product>();
+
         Spark.staticFileLocation("/webfiles");
         String port= System.getenv("PORT");
         if (port !=null) {
             int portInt = Integer.parseInt(port);
 
             Spark.port(portInt);
+        }
             Spark.get("/AniSklep", (request, response)->
             {
                 String name = request.queryParams("name");
@@ -27,7 +34,7 @@ public class Project1 {
                 String description = request.queryParams("description");
 
                 Product product=new Product(name,category,pricex,description );
-
+                listaProduktow.add (product);
                 Map<String, Object> model = new HashMap();
                 model.put("product", product.toString());
 
@@ -68,7 +75,7 @@ public class Project1 {
 //
 //        System.out.println(silnik.toString());
 //
-//        SkrzyniaBiegów skrzynia = new SkrzyniaBiegów(true, 5) ;
+//        SkrzyniaBiegow skrzynia = new SkrzyniaBiegow(true, 5) ;
 //        Kolo kolo = new Kolo(45, 15);
 //        System.out.println(kolo.toString());
 //
@@ -86,4 +93,4 @@ public class Project1 {
 //        ksiazka.pokazOpis();
 
     }
-} }
+}
