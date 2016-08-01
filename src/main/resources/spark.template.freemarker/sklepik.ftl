@@ -1,1 +1,0 @@
-<html>Hi,  Twój produkt:  ${product} </html>
