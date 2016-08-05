@@ -4,10 +4,10 @@ package project.shop;
  * Created by Anna Kacprzak on 2016-07-31.
  */
 public class Product {
-    public String name;
-    public String category;
-    public double price;
-    public String description;
+    private String name;
+    private String category;
+    private double price;
+    private String description;
 
     public Product (String name, String category, double price, String description){
         this.name= name;
