@@ -18,6 +18,7 @@ public class Product {
 
 
 
+
     public String toString (){
         return "name:" + name+ ";"+ " category:" + category + ";" + "price:" + price + ";"+ "description: "+description;
     }
