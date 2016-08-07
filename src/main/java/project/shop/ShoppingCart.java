@@ -8,7 +8,6 @@ import java.util.List;
  */
 public class ShoppingCart {
     private List<Product> products = new ArrayList<Product>();
-    Product product = new Product("sukienka wieczorowa", "ubrania", 100, "piękna sukienka");
 
     public void addProduct(Product product) throws ProduktJuzWKoszykuException {
         if (products.contains(product)) {

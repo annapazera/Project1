@@ -1,6 +1,8 @@
 import project.shop.Product;
 
 import project.shop.ProduktJuzIstniejeException;
+import project.shop.ProduktJuzWKoszykuException;
+import project.shop.ShoppingCart;
 import spark.ModelAndView;
 import spark.Spark;
 import spark.template.freemarker.FreeMarkerEngine;
@@ -102,4 +104,7 @@ public class Project1 {
 //        ksiazka.pokazOpis();
 
     }
+
+
+
 }
