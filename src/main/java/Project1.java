@@ -1,5 +1,6 @@
 import project.shop.Product;
 
+import project.shop.ProduktJuzIstniejeException;
 import spark.ModelAndView;
 import spark.Spark;
 import spark.template.freemarker.FreeMarkerEngine;
@@ -33,6 +34,12 @@ public class Project1 {
                 String price = request.queryParams("price");
                 double pricex = Double.parseDouble(price);
                 String description = request.queryParams("description");
+
+                for (Product item:listaProduktow){
+                    if (item.getName().equals(name)){
+                        throw new ProduktJuzIstniejeException();
+                    }
+                }
 
                 Product product=new Product(name,category,pricex,description );
                 listaProduktow.add (product);

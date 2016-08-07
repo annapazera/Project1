@@ -17,7 +17,18 @@ public class Product {
     }
 
 
-
+    public String getName (){
+        return name;
+    }
+    public String getCategory (){
+        return category;
+    }
+    public double getPrice (){
+        return price;
+    }
+    public String getDescription (){
+        return description;
+    }
 
     public String toString (){
         return "name:" + name+ ";"+ " category:" + category + ";" + "price:" + price + ";"+ "description: "+description;
