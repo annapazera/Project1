@@ -8,5 +8,11 @@
         </head>
         <body>
         <h1> Hi,  Twój produkt:  ${product} </h1>
+
+        <#list products as product1>
+        <p>${product1}
+<#--        <#else>
+        <p>No products-->
+        </#list>
         </body>
         </html>

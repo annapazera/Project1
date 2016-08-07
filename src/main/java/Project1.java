@@ -6,6 +6,7 @@ import spark.template.freemarker.FreeMarkerEngine;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 /**
@@ -37,6 +38,7 @@ public class Project1 {
                 listaProduktow.add (product);
                 Map<String, Object> model = new HashMap();
                 model.put("product", product.toString());
+                model.put("products", listaProduktow);
 
 
 
