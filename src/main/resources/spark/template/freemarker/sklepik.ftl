@@ -7,7 +7,7 @@
         }</style>
 </head>
 <body>
-<h1> W sklepie Ani na pewno znajdziesz coś dla siebie ! </h1>
+<h1> Sprawdź, czy znajdziesz coś dla siebie ! </h1>
 <table>
     <thread>
         <tr>
