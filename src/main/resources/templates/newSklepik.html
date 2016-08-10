@@ -1,0 +1,30 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <style>
+        body {
+            background-color: #FFC0CB;
+        }</style>
+</head>
+<body>
+<h1> Sprawdź, czy znajdziesz coś dla siebie ! </h1>
+<table>
+    <thread>
+        <tr>
+            <th>Nazwa produktu</th><th>Kategoria</th><th>Cena</th><th>Opis</th>
+        </tr>
+    </thread>
+
+        <tr th:each="product1: ${products}">
+            <td th:text="''+ ${product1.name}"></td>
+            <td th:text="''+ ${product1.category}"></td>
+            <td th:text="''+ ${product1.price}+'zł'"></td>
+            <td th:text="''+ ${product1.description}"></td>
+        </tr>
+
+
+</table>
+<br/><br/>
+<a href="form01.html">Dodaj kolejny produkt! </a>
+</body>
+</html>

@@ -6,10 +6,10 @@ package project.shop;
 public class Product {
     private String name;
     private String category;
-    private double price;
+    private String price;
     private String description;
 
-    public Product (String name, String category, double price, String description){
+    public Product (String name, String category, String price, String description){
         this.name= name;
         this.category=category;
         this.price=price;
@@ -23,7 +23,7 @@ public class Product {
     public String getCategory (){
         return category;
     }
-    public double getPrice (){
+    public String getPrice (){
         return price;
     }
     public String getDescription (){
