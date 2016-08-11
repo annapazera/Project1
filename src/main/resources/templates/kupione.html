@@ -4,6 +4,13 @@
 
 </head>
 <body>
-<p th:text="'Oto lista Twoich zakupów:' + ${product} " />
+<table th:each="product1: ${kupioneProdukty}">
+    <tr >
+        <td th:text="''+ ${product1.name}"></td>
+        <td th:text="''+ ${product1.category}"></td>
+        <td th:text="''+ ${product1.price}+'zł'"></td>
+        <td th:text="''+ ${product1.description}"></td>
+    </tr>
+</table>
 </body>
 </html>

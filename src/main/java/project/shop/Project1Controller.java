@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Project1Controller {
 
     private ArrayList<Product> listaProduktow = new ArrayList<Product>();
-
+    ArrayList<Product> kupioneProdukty = new ArrayList<>();
     @RequestMapping("/form01")
     public String form() {
         return "form02";
@@ -40,15 +40,20 @@ public class Project1Controller {
 
     @RequestMapping("/kup")
     public String kupowanie(@RequestParam(value = "name", required = true) String name, Model model) {
+
         for (Product product : listaProduktow) {
 
             if (name.equals(product.getName())) {
-
-                model.addAttribute("product", product);
-
-
+                kupioneProdukty.add(product);
+//                model.addAttribute("product", product);
             }
+
         }
+
+        model.addAttribute("kupioneProdukty", kupioneProdukty);
         return "kupione";
+
+
+
     }
 }
