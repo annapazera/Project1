@@ -1,5 +1,6 @@
 package project.shop;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,11 @@ public class Project1Controller {
     private ProductRepository productRepository;
 
     ArrayList<Product> kupioneProdukty = new ArrayList<>();
+
+    @Autowired
+    public Project1Controller(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
 
     @RequestMapping("/form01")
     public String form() {
