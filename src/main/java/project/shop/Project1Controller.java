@@ -10,8 +10,10 @@ import java.util.ArrayList;
 @Controller
 public class Project1Controller {
 
-    private ArrayList<Product> listaProduktow = new ArrayList<Product>();
+    private ProductRepository productRepository;
+
     ArrayList<Product> kupioneProdukty = new ArrayList<>();
+
     @RequestMapping("/form01")
     public String form() {
         return "form02";
@@ -23,16 +25,16 @@ public class Project1Controller {
                         @RequestParam(value = "price", required = true) String price,
                         @RequestParam(value = "description", required = true) String description, Model model) throws ProduktJuzIstniejeException {
 
-        for (Product item : listaProduktow) {
-            if (item.getName().equals(name)) {
-                throw new ProduktJuzIstniejeException();
-            }
+
+        if (productRepository.productExistsWithGivenName(name)) {
+            throw new ProduktJuzIstniejeException();
         }
 
-        Product product = new Product(name, category, price, description);
-        listaProduktow.add(product);
 
-        model.addAttribute("products", listaProduktow);
+        Product product = new Product(name, category, price, description);
+        productRepository.createNewProduct(product);
+
+        model.addAttribute("products", productRepository.getAllProducts());
 
         return "newSklepik";
 
@@ -41,19 +43,9 @@ public class Project1Controller {
     @RequestMapping("/kup")
     public String kupowanie(@RequestParam(value = "name", required = true) String name, Model model) {
 
-        for (Product product : listaProduktow) {
-
-            if (name.equals(product.getName())) {
-                kupioneProdukty.add(product);
-//                model.addAttribute("product", product);
-            }
-
-        }
+        kupioneProdukty.add(productRepository.getProductByName(name));
 
         model.addAttribute("kupioneProdukty", kupioneProdukty);
         return "kupione";
-
-
-
     }
 }
