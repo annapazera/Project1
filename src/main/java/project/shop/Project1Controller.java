@@ -20,9 +20,15 @@ public class Project1Controller {
         this.productRepository = productRepository;
     }
 
-    @RequestMapping("/form01")
+    @RequestMapping("/")
+    public String sklep(Model model) {
+        model.addAttribute("products", productRepository.getAllProducts());
+        return "newSklepik";
+    }
+
+    @RequestMapping("/admin")
     public String form() {
-        return "form02";
+        return "panelAdministracyjny";
     }
 
     @RequestMapping("/AniSklep")
