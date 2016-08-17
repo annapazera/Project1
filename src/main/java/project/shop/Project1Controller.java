@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 
+import static project.shop.ShoppingCart.kupioneProdukty;
+
 @Controller
 public class Project1Controller {
 
     private ProductRepository productRepository;
     private ShoppingCart shoppingCart;
-    ArrayList<Product> kupioneProdukty = new ArrayList<>();
+
 
     @Autowired
     public Project1Controller(ProductRepository productRepository, ShoppingCart shoppingCart) {
@@ -55,8 +57,8 @@ public class Project1Controller {
 
     @RequestMapping("/kup")
     public String kupowanie(@RequestParam(value = "name", required = true) String name, Model model) {
-
         kupioneProdukty.add(productRepository.getProductByName(name));
+        shoppingCart.getProducts();
 
         model.addAttribute("kupioneProdukty", kupioneProdukty);
         return "kupione";
