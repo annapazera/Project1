@@ -2,7 +2,7 @@
 //
 //import project.shop.ProduktJuzIstniejeException;
 //import project.shop.ProduktJuzWKoszykuException;
-//import project.shop.ShoppingCart;
+//import project.shop.ShoppingCartImpl;
 //import spark.ModelAndView;
 //import spark.Spark;
 //import spark.template.freemarker.FreeMarkerEngine;

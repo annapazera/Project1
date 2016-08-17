@@ -1,6 +1,3 @@
-import project.shop.Product;
-import project.shop.ShoppingCart;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -45,7 +42,7 @@ Iterator it=lista.iterator();
 //
 //        System.out.println(car.toString());
 //
-//        ShoppingCart shoppingCart=new ShoppingCart();
+//        ShoppingCartImpl shoppingCart=new ShoppingCartImpl();
 //        Product product=new Product("Sukienka wieczorowa", "Sukienki", 150, "Piękna sukienka na wesele");
 //        Product product2=new Product("Kalosze", "Buty", 70, "Super gumiaki na brzydką pogodę");
 //        shoppingCart.products.add(product);

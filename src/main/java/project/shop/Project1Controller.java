@@ -12,12 +12,13 @@ import java.util.ArrayList;
 public class Project1Controller {
 
     private ProductRepository productRepository;
-
+    private ShoppingCart shoppingCart;
     ArrayList<Product> kupioneProdukty = new ArrayList<>();
 
     @Autowired
-    public Project1Controller(ProductRepository productRepository) {
+    public Project1Controller(ProductRepository productRepository, ShoppingCart shoppingCart) {
         this.productRepository = productRepository;
+        this.shoppingCart=shoppingCart;
     }
 
     @RequestMapping("/")
