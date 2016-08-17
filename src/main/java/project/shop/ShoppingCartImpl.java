@@ -5,28 +5,23 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
-@Scope("singleton")
+
 @Component
 public class ShoppingCartImpl implements ShoppingCart{
 
+    ArrayList<Product> kupioneProdukty= new ArrayList<>();
+
 
     public void addProduct(Product product) throws ProduktJuzWKoszykuException {
-        if (products.contains(product)) {
+        if (kupioneProdukty.contains(product)) {
             throw new ProduktJuzWKoszykuException();
         }
-        products.add(product);
-
-    }
-
-    @Override
-    public void getProducts() {
-
-    }
-
-    @Override
-    public void getProducts(Product product) {
         kupioneProdukty.add(product);
     }
 
+    @Override
+    public List<Product> getShoppingCartProducts() {
+        return kupioneProdukty;
+    }
 
 }

@@ -6,10 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-
-import static project.shop.ShoppingCart.kupioneProdukty;
-
 @Controller
 public class Project1Controller {
 
@@ -20,7 +16,7 @@ public class Project1Controller {
     @Autowired
     public Project1Controller(ProductRepository productRepository, ShoppingCart shoppingCart) {
         this.productRepository = productRepository;
-        this.shoppingCart=shoppingCart;
+        this.shoppingCart = shoppingCart;
     }
 
     @RequestMapping("/")
@@ -56,11 +52,11 @@ public class Project1Controller {
     }
 
     @RequestMapping("/kup")
-    public String kupowanie(@RequestParam(value = "name", required = true) String name, Model model) {
-        kupioneProdukty.add(productRepository.getProductByName(name));
-        shoppingCart.getProducts();
+    public String kupowanie(@RequestParam(value = "name", required = true) String name, Model model) throws ProduktJuzWKoszykuException {
+        Product produktDoKupienia = productRepository.getProductByName(name);
+        shoppingCart.addProduct(produktDoKupienia);
 
-        model.addAttribute("kupioneProdukty", kupioneProdukty);
+        model.addAttribute("kupioneProdukty", shoppingCart.getShoppingCartProducts());
         return "kupione";
     }
 }
