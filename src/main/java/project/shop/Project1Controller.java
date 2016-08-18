@@ -68,11 +68,17 @@ public class Project1Controller {
         shoppingCart.addProduct(produktDoKupienia);
 
         model.addAttribute("kupioneProdukty", shoppingCart.getShoppingCartProducts());
-        return "kupione";
+
 
 
         model.addAttribute("suma", shoppingCart.sumujCenyKupionychProduktow());
-        return "platnosci";
+
+        if (produktDoKupienia==null){
+            return "platnosci";}
+            else { return "kupione";
+        }
+
+
     }
 
     @RequestMapping("/addClient")

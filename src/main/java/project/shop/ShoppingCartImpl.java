@@ -26,13 +26,10 @@ public class ShoppingCartImpl implements ShoppingCart{
     @Override
     public float sumujCenyKupionychProduktow() {
         float suma = 0;
-        for (Product product : kupioneProdukty){
-            suma+=product.getPrice();
+        for (Product product : kupioneProdukty) {
+            suma += product.getPrice();
+
         }
         return suma;
-    }
 
-
-
-
-}
+    }}
