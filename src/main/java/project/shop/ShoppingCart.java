@@ -8,7 +8,7 @@ public interface ShoppingCart {
     void addProduct(Product product) throws ProduktJuzWKoszykuException;
 
     List<Product> getShoppingCartProducts();
-    float sumujCenyKupionychProduktow(Product product);
+    float sumujCenyKupionychProduktow();
 
 
 }

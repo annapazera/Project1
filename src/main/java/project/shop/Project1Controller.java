@@ -71,7 +71,7 @@ public class Project1Controller {
         return "kupione";
 
 
-        model.addAttribute("suma", shoppingCart.sumujCenyKupionychProduktow(Product product));
+        model.addAttribute("suma", shoppingCart.sumujCenyKupionychProduktow());
         return "platnosci";
     }
 
