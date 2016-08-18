@@ -11,12 +11,14 @@ public class Project1Controller {
 
     private ProductRepository productRepository;
     private ShoppingCart shoppingCart;
+    private ClientRepository clientRepository;
 
 
     @Autowired
-    public Project1Controller(ProductRepository productRepository, ShoppingCart shoppingCart) {
+    public Project1Controller(ProductRepository productRepository, ShoppingCart shoppingCart, ClientRepository clientRepository) {
         this.productRepository = productRepository;
         this.shoppingCart = shoppingCart;
+        this.clientRepository = clientRepository;
     }
 
     @RequestMapping("/")
@@ -29,6 +31,7 @@ public class Project1Controller {
     public String form() {
         return "panelAdministracyjny";
     }
+
     @RequestMapping("/placenie")
     public String formularz() {
         return "platnosci";
@@ -47,11 +50,15 @@ public class Project1Controller {
 
 
         Product product = new Product(name, category, price, description);
+
+
         productRepository.createNewProduct(product);
+
 
         model.addAttribute("products", productRepository.getAllProducts());
 
         return "newSklepik";
+
 
     }
 
@@ -62,16 +69,26 @@ public class Project1Controller {
 
         model.addAttribute("kupioneProdukty", shoppingCart.getShoppingCartProducts());
         return "kupione";
+
+
+        model.addAttribute("suma", shoppingCart.sumujCenyKupionychProduktow(Product product));
+        return "platnosci";
     }
+
     @RequestMapping("/addClient")
-    public String daneKlienta (@RequestParam(value="imie", required=true) String imie,
-                               @RequestParam(value="nazwisko", required=true) String nazwisko,
-                               @RequestParam(value="ulica", required=true) String ulica,
-                               @RequestParam(value="nrDomu", required=true) String nrDomu,
-                               @RequestParam(value="nrMieszkania", required=true) String nrMieszkania,
-                               @RequestParam(value="kod", required=true) String kod,
-                               @RequestParam(value="miasto", required=true) String miasto, Model model){
+    public String daneKlienta(@RequestParam(value = "imie", required = true) String imie,
+                              @RequestParam(value = "nazwisko", required = true) String nazwisko,
+                              @RequestParam(value = "ulica", required = true) String ulica,
+                              @RequestParam(value = "nrDomu", required = true) String nrDomu,
+                              @RequestParam(value = "nrMieszkania", required = true) String nrMieszkania,
+                              @RequestParam(value = "kod", required = true) String kod,
+                              @RequestParam(value = "miasto", required = true) String miasto, Model model) {
 
-    return "podziekowanie";
+        Client client = new Client(imie, nazwisko, ulica, nrDomu, nrMieszkania, kod, miasto);
 
-}}
+
+        return "podziekowanie";
+
+
+    }
+}
