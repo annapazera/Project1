@@ -15,16 +15,16 @@
 </head>
 <body>
         <form action= "addClient">
-    <h2> Imię </h2><input name="imie"/>
-    <h2>Nazwisko</h2> <input surname="nazwisko"/>
-    <h2>Ulica</h2> <input street="ulica"/>
-    <h2>Nr domu</h2> <input number="nrDomu"/>
-    <h2>Nr mieszkania</h2> <input numberMieszkania="nrMieszkania"/>
-    <h2>Kod</h2> <input code="kod"/>
-    <h2>Miasto</h2> <input city="miasto"/>
+    <h3> Imię </h3><input name="imie"/>
+    <h3>Nazwisko</h3> <input surname="nazwisko"/>
+    <h3>Ulica</h3> <input street="ulica"/>
+    <h3>Nr domu</h3> <input number="nrDomu"/>
+    <h3>Nr mieszkania</h3> <input numberMieszkania="nrMieszkania"/>
+    <h3>Kod</h3> <input code="kod"/>
+    <h3>Miasto</h3> <input city="miasto"/>
     <input type="submit"/>
 </form>
 <div>
- <p th:text= "'Kwota do zapłaty: ' + ${kwotaZaZakupy}" /><br/></div>
+ <p th:text= "'Kwota do zapłaty: ' + ${suma}" /><br/></div>
 </body>
 </html>

@@ -1,6 +1,5 @@
 package project.shop;
 
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -23,5 +22,17 @@ public class ShoppingCartImpl implements ShoppingCart{
     public List<Product> getShoppingCartProducts() {
         return kupioneProdukty;
     }
+
+    @Override
+    public float sumujCenyKupionychProduktow(Product product) {
+        float suma = 0;
+        for (int i=0; i <kupioneProdukty.size();i++) {
+            suma += product.getPrice();
+        }
+        return suma;
+    }
+
+
+
 
 }

@@ -23,8 +23,8 @@ public class Product {
     public String getCategory (){
         return category;
     }
-    public String getPrice (){
-        return price;
+    public float getPrice (){
+        return Float.parseFloat(price);
     }
     public String getDescription (){
         return description;
