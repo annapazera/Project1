@@ -29,6 +29,10 @@ public class Project1Controller {
     public String form() {
         return "panelAdministracyjny";
     }
+    @RequestMapping("/placenie")
+    public String formularz() {
+        return "platnosci";
+    }
 
     @RequestMapping("/AniSklep")
     public String sklep(@RequestParam(value = "name", required = true) String name,
@@ -59,4 +63,15 @@ public class Project1Controller {
         model.addAttribute("kupioneProdukty", shoppingCart.getShoppingCartProducts());
         return "kupione";
     }
-}
+    @RequestMapping("/addClient")
+    public String daneKlienta (@RequestParam(value="imie", required=true) String imie,
+                               @RequestParam(value="nazwisko", required=true) String nazwisko,
+                               @RequestParam(value="ulica", required=true) String ulica,
+                               @RequestParam(value="nrDomu", required=true) String nrDomu,
+                               @RequestParam(value="nrMieszkania", required=true) String nrMieszkania,
+                               @RequestParam(value="kod", required=true) String kod,
+                               @RequestParam(value="miasto", required=true) String miasto, Model model){
+
+    return "podziekowanie";
+
+}}

@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+
     <style>
         body {
             background-color: #FFEFD5;
         }
-        /*div {*/
-            /*background-color: #C0C0C0;*/
-            /*text-align: left;*/
-        /*}*/
+        div {
+            background-color: #C0C0C0;
+            text-align: left;
+        }
     </style>
     <h1><strong>Podsumowanie zakupów </strong></h1>
 </head>
@@ -24,7 +24,7 @@
     <h2>Miasto</h2> <input city="miasto"/>
     <input type="submit"/>
 </form>
-<!--<div>-->
-<!--<h2> Kwota do zapłaty + ${kwotaZaZakupy} </h2><br/></div>-->
+<div>
+ <p th:text= "'Kwota do zapłaty: ' + ${kwotaZaZakupy}" /><br/></div>
 </body>
 </html>
