@@ -33,7 +33,7 @@ public class Project1Controller {
     }
 
     @RequestMapping("/placenie")
-    public String formularz(@RequestParam(value = "suma", required = true) String suma, Model model){
+    public String formularz( Model model){
         model.addAttribute("suma", shoppingCart.sumujCenyKupionychProduktow());
         return "platnosci";
     }
