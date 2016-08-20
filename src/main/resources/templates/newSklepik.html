@@ -1,23 +1,92 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
+<style>
 
+   body{
+       background-color: #FFDAB9;
+       margin:50px;
+       border-top:10px, solid, purple;
+
+   }
+    h1{
+        font-family: monospace;
+    }
+    div {
+        align:center;
+        text-align: center;
+        background-color:white;
+    }
+    th{
+        font-family: monospace;
+        font-size: 22px;
+    }
+   .tabela
+   {
+       width: 100%;
+       margin: 0 auto;
+       border-collapse: separate;
+       border-spacing: 0;
+       border: 0;
+       text-shadow: 0 1px 0 #fff;
+       background: #fafafa;
+       background-image: -moz-linear-gradient(top, #fff, #eaeaea, #fff); /* Firefox */
+       background-image: -webkit-gradient(linear,center bottom,center top,from(#fff),color-stop(0.5, #eaeaea),to(#fff));
+       margin-top:20px;
+       margin-bottom:20px;
+   }
+
+   .tabela td.czerwony
+   {
+       background: #f6a3a3;
+       border-right: 1px solid white;
+       text-align: center;
+   }
+
+   .tabela td.zolty
+   {
+       background: #f7ffb2;
+       border-right: 1px solid white;
+       text-align: center;
+   }
+
+   .tabela td.zielony
+     {
+         background: #c8f6a3;
+       text-align: center;
+     }
+   .tabela td.niebieski
+   {
+       background: #B0E0E6;
+       text-align: center;
+   }
+    .kupow{
+        text-align: center;
+    }
+
+</style>
 </head>
+
 <body>
-<h1> Sprawdź, czy znajdziesz coś dla siebie ! </h1>
-<table>
+
+<h1> <div>Witaj w moim sklepie, sprawdź, czy znajdziesz coś dla siebie ! </div> </h1>
+<table class="tabela">
     <thread>
-        <tr>
-            <th>Nazwa produktu</th><th>Kategoria</th><th>Cena</th><th>Opis</th>
+        <tr >
+            <td class="niebieski"><strong>Nazwa produktu</strong></td>
+            <td class="zolty"><strong>Kategoria</strong></td>
+            <td class="zielony"><strong>Cena</strong></td>
+            <td class="czerwony"><strong>Opis</strong></td>
         </tr>
     </thread>
 
+
         <tr th:each="product1: ${products}">
             <td th:text="''+ ${product1.name}"></td>
-            <td th:text="''+ ${product1.category}"></td>
+            <td  th:text="''+ ${product1.category}"></td>
             <td th:text="''+ ${product1.price}+'zł'"></td>
             <td th:text="''+ ${product1.description}"></td>
-            <td><a href="#" th:href="'kup?name='+${product1.name}">KUP</a></td>
+            <td class="kupow"><a href="#" th:href="'kup?name='+${product1.name}"><strong>KUP</strong></a></td>
         </tr>
 
 
