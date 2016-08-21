@@ -6,6 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 @Controller
 public class Project1Controller {
 
@@ -28,7 +31,11 @@ public class Project1Controller {
     }
 
     @RequestMapping("/admin")
-    public String form() {
+    public String form(@RequestParam(name = "error", required = false) String error, Model model) {
+        if ( "nazwa".equals(error)) {
+            model.addAttribute("errorDescription", "Już taki jest!");
+        }
+        model.addAttribute("error", error);
         return "panelAdministracyjny";
     }
 
@@ -46,7 +53,12 @@ public class Project1Controller {
 
 
         if (productRepository.productExistsWithGivenName(name)) {
-            throw new ProduktJuzIstniejeException();
+            try {
+                String error = URLEncoder.encode("Produkt z taką nazwą już istnieje!", "UTF-8");
+                return "redirect:/admin?error=nazwa";
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            }
         }
 
 
