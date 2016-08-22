@@ -38,7 +38,7 @@ public class Project1Controller {
     }
 
     @RequestMapping("/placenie")
-    public String formularz( Model model){
+    public String formularz(Model model) {
         model.addAttribute("suma", shoppingCart.sumujCenyKupionychProduktow());
         return "platnosci";
     }
@@ -50,12 +50,13 @@ public class Project1Controller {
                         @RequestParam(value = "description", required = true) String description, Model model) throws ProduktJuzIstniejeException {
 
 
-
         if (productRepository.productExistsWithGivenName(name)) {
-            String error=encode("Produkt o takiej nazwie już istnieje!" );
-            return "redirect:/admin?error= "+error;
+            String error = encode("Produkt o takiej nazwie już istnieje!");
+            return "redirect:/admin?error= " + error;
 
         }
+
+
 
 
         Product product = new Product(name, category, price, description);
@@ -75,19 +76,13 @@ public class Project1Controller {
     public String kupowanie(@RequestParam(value = "name", required = true) String name, Model model) throws ProduktJuzWKoszykuException {
         Product produktDoKupienia = productRepository.getProductByName(name);
         shoppingCart.addProduct(produktDoKupienia);
+        return "redirect:/kupione";
+    }
 
+    @RequestMapping("/kupione")
+    public String kupione(Model model) {
         model.addAttribute("kupioneProdukty", shoppingCart.getShoppingCartProducts());
-
-
-return "kupione";
-
-
-//        if (produktDoKupienia==null){
-//            return "platnosci";}
-//            else { return "kupione";
-//        }
-
-
+        return "kupione";
     }
 
     @RequestMapping("/addClient")
@@ -106,10 +101,11 @@ return "kupione";
 
 
     }
-    private String encode (String text){
+
+    private String encode(String text) {
         try {
             return URLEncoder.encode(text, "UTF-8");
-        }catch (UnsupportedEncodingException e){
+        } catch (UnsupportedEncodingException e) {
             throw new RuntimeException(e);
         }
 
