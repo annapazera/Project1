@@ -27,7 +27,7 @@ public class Project1Controller {
     }
 
     @RequestMapping("/")
-    public String sklep(Model model) {
+    public String dodajProdukt(Model model) {
         model.addAttribute("products", productRepository.getAllProducts());
         return "newSklepik";
     }
@@ -43,11 +43,11 @@ public class Project1Controller {
         return "platnosci";
     }
 
-    @RequestMapping("/AniSklep")
-    public String sklep(@RequestParam(value = "name", required = true) String name,
-                        @RequestParam(value = "category", required = true) String category,
-                        @RequestParam(value = "price", required = true) String price,
-                        @RequestParam(value = "description", required = true) String description, Model model) throws ProduktJuzIstniejeException {
+    @RequestMapping("/DodajProdukt")
+    public String dodajProdukt(@RequestParam(value = "name", required = true) String name,
+                               @RequestParam(value = "category", required = true) String category,
+                               @RequestParam(value = "price", required = true) String price,
+                               @RequestParam(value = "description", required = true) String description, Model model) throws ProduktJuzIstniejeException {
 
 
         if (productRepository.productExistsWithGivenName(name)) {
@@ -55,31 +55,26 @@ public class Project1Controller {
             return "redirect:/admin?error= " + error;
 
         }
-
-
-
-
         Product product = new Product(name, category, price, description);
-
-
         productRepository.createNewProduct(product);
-
-
-        model.addAttribute("products", productRepository.getAllProducts());
-
-        return "newSklepik";
-
+        return "redirect:/AniSklep";
 
     }
+    @RequestMapping("/AniSklep")
+    public String sklep (Model model){
+        model.addAttribute("products", productRepository.getAllProducts());
+        return "newSklepik";
+    }
+
 
     @RequestMapping("/kup")
     public String kupowanie(@RequestParam(value = "name", required = true) String name, Model model) throws ProduktJuzWKoszykuException {
         Product produktDoKupienia = productRepository.getProductByName(name);
         shoppingCart.addProduct(produktDoKupienia);
-        return "redirect:/kupione";
+        return "redirect:/kupioneProdukty";
     }
 
-    @RequestMapping("/kupione")
+    @RequestMapping("/kupioneProdukty")
     public String kupione(Model model) {
         model.addAttribute("kupioneProdukty", shoppingCart.getShoppingCartProducts());
         return "kupione";
