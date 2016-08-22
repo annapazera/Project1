@@ -6,6 +6,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
+import static jdk.internal.dynalink.support.NameCodec.encode;
+
 @Controller
 public class Project1Controller {
 
@@ -45,8 +50,11 @@ public class Project1Controller {
                         @RequestParam(value = "description", required = true) String description, Model model) throws ProduktJuzIstniejeException {
 
 
+
         if (productRepository.productExistsWithGivenName(name)) {
-            throw new ProduktJuzIstniejeException();
+            String error=encode("Produkt o takiej nazwie już istnieje!" );
+            return "redirect:/admin?error= "+error;
+
         }
 
 
@@ -96,6 +104,14 @@ return "kupione";
 
         return "podziekowanie";
 
+
+    }
+    private String encode (String text){
+        try {
+            return URLEncoder.encode(text, "UTF-8");
+        }catch (UnsupportedEncodingException e){
+            throw new RuntimeException(e);
+        }
 
     }
 }
