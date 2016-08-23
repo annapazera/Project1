@@ -6,9 +6,8 @@ import org.testng.annotations.Test;
 import java.util.Collections;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.*;
 
 public class Project1ControllerTest {
 
@@ -19,37 +18,28 @@ public class Project1ControllerTest {
     private String name;
 
     @Test
-public void test1() throws ProduktJuzWKoszykuException {
+    public void addsSelectedProductToShoppingCart() throws ProduktJuzWKoszykuException {
 
         // given
+        ProductRepository productRepository = mock(ProductRepository.class);
+        ShoppingCart shoppingCart = mock(ShoppingCart.class);
+        ClientRepository clientRepository = mock(ClientRepository.class);
 
-        ProductRepository productRepository=mock(ProductRepository.class);
-        ShoppingCart shoppingCart=mock(ShoppingCart.class);
-        ClientRepository clientRepository=mock(ClientRepository.class);
+        Project1Controller sut = new Project1Controller(productRepository, shoppingCart, clientRepository);
 
-  Project1Controller project1Controller = new Project1Controller(productRepository, shoppingCart, clientRepository );
-
-        Model model=mock(Model.class);
-        Product product= mock(Product.class);
-        when(product.getName()).thenReturn("Ania");
+        Product expectedProduct = aProduct();
+        when(productRepository.getProductByName("shoes")).thenReturn(expectedProduct);
 
         // when
-        project1Controller.kupowanie("",model);
+        sut.kupowanie("shoes");
+
         // then
+        verify(shoppingCart).addProduct(same(expectedProduct));
+    }
 
-        ShoppingCart shopingCart=mock(ShoppingCartImpl.class);
-//        when(shopingCart.sumujCenyKupionychProduktow()).thenReturn(300f);
-
-        System.out.println(shopingCart.sumujCenyKupionychProduktow());
-        System.out.println(product.getName());
-//        assertTrue(shopingCart.sumujCenyKupionychProduktow()==300);
-        assertTrue(product.getName().equals("Ania"));
-
-        verify(shopingCart).sumujCenyKupionychProduktow();
-}
-
-
-
+    private Product aProduct() {
+        return new Product("frendzel", "akcesoria", "20000", "Lorem ipsum");
+    }
 
 
 }

@@ -68,7 +68,7 @@ public class Project1Controller {
 
 
     @RequestMapping("/kup")
-    public String kupowanie(@RequestParam(value = "name", required = true) String name, Model model) throws ProduktJuzWKoszykuException {
+    public String kupowanie(@RequestParam(value = "name", required = true) String name) throws ProduktJuzWKoszykuException {
         Product produktDoKupienia = productRepository.getProductByName(name);
         shoppingCart.addProduct(produktDoKupienia);
         return "redirect:/kupioneProdukty";
