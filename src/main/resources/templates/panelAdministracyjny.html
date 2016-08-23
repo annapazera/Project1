@@ -7,20 +7,32 @@
             background-color: #FFC0CB;
         }
 
-/*.error{*/
-    /*color:red;*/
-/*}*/
+
 
         h1 {
             font-family: monospace;
+        }
+
+        .error {
+            color: red;
         }
     </style>
     <h1><strong> Anna's shop :-) </strong></h1>
     <h2><strong> Dodaj produkt ! </strong></h2>
 </head>
 <body>
-<!--<h2 th:text="${error}" class="error"></h2>-->
-    <form action="DodajProdukt">
+
+   <h2 th:text="${error}" class="error"></h2>
+   <h2 th:text="${errorDescription}" class="error"></h2>
+
+   <div th:switch="${error}" class="error">
+       <p th:case="'nazwa'">Taki produkt już jest!</p>
+       <p th:case="'cena'">Cena jest błędna</p>
+   </div>
+
+
+
+    <form action="AniSklep">
       <h2> Nazwa produktu </h2><input name="name"/>
       <h2>Kategoria</h2>
         <select name="category">
