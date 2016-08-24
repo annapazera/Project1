@@ -1,16 +1,11 @@
 package project.shop;
 
-import org.junit.Assert;
 import org.mockito.ArgumentCaptor;
 import org.springframework.ui.Model;
 import org.testng.annotations.Test;
 
-import java.util.Collections;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.equalTo;
 
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
 public class Project1ControllerTest {
@@ -74,10 +69,12 @@ public class Project1ControllerTest {
         Client actualArgument=captor.getValue();
 
      //   Assert.assertThat(actualArgument., equalTo("Anna"));
+
         assertThat(actualArgument).isEqualToComparingFieldByField(new Client("Anna", "Pazera", "Blablabla", "13", "12", "95-050", "Kansas"));
-        ProductFactory productFactory = mock(ProductFactory.class);
+
+        ClientFactory clientFactory = mock(ClientFactory.class);
         Client client2 = mock(Client.class);
-        when(productFactory.createClient("Anna", "Pazera", "Blablabla", "13", "12", "95-050", "Kansas")).thenReturn(client2);
+        when(clientFactory.createClient("Anna", "Pazera", "Blablabla", "13", "12", "95-050", "Kansas")).thenReturn(client2);
     }
 
 
