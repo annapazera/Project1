@@ -5,6 +5,6 @@ package project.shop;
  */
 public interface ClientFactory {
 
-   String createClient(String anna, String pazera, String blablabla, String s, String s1, String s2, String kansas);
+   Client createClient(String anna, String pazera, String blablabla, String s, String s1, String s2, String kansas);
 
 }

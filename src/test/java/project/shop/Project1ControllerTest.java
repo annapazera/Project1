@@ -6,6 +6,7 @@ import org.testng.annotations.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
 public class Project1ControllerTest {
@@ -53,10 +54,19 @@ public class Project1ControllerTest {
 
         Model model=mock(Model.class);
         Client client = mock(Client.class);
+
+
+        ClientFactory clientFactory = mock(ClientFactory.class);
+        Client client2 = mock(Client.class);
+
+        given(clientFactory.createClient("Anna", "Pazera", "Blablabla", "13", "12", "95-050", "Kansas")).willReturn(client2);
+
+
         // when
         sut.daneKlienta("Anna", "Pazera", "Blablabla", "13", "12", "95-050", "Kansas", model);
 
         // then
+
 //        verify(clientRepository).addClient(any());
       //  when(clientRepository.).thenReturn(client);
 
@@ -72,9 +82,7 @@ public class Project1ControllerTest {
 
         assertThat(actualArgument).isEqualToComparingFieldByField(new Client("Anna", "Pazera", "Blablabla", "13", "12", "95-050", "Kansas"));
 
-        ClientFactory clientFactory = mock(ClientFactory.class);
-        Client client2 = mock(Client.class);
-        when(clientFactory.createClient("Anna", "Pazera", "Blablabla", "13", "12", "95-050", "Kansas")).thenReturn(client2);
+
     }
 
 
