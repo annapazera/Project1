@@ -90,8 +90,7 @@ public class Project1Controller {
                               @RequestParam(value = "miasto", required = true) String miasto, Model model) {
 
         Client client = new Client(imie, nazwisko, ulica, nrDomu, nrMieszkania, kod, miasto);
-
-
+        clientRepository.addClient(client);
         return "podziekowanie";
 
 

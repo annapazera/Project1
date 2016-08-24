@@ -1,11 +1,15 @@
 package project.shop;
 
+import org.junit.Assert;
+import org.mockito.ArgumentCaptor;
 import org.springframework.ui.Model;
 import org.testng.annotations.Test;
 
 import java.util.Collections;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.CoreMatchers.equalTo;
+
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -40,6 +44,42 @@ public class Project1ControllerTest {
     private Product aProduct() {
         return new Product("frendzel", "akcesoria", "20000", "Lorem ipsum");
     }
+
+    @Test
+    public void shouldGetClientsDetails() {
+
+
+        // given
+        ProductRepository productRepository = mock(ProductRepository.class);
+        ShoppingCart shoppingCart = mock(ShoppingCart.class);
+        ClientRepository clientRepository = mock(ClientRepository.class);
+
+        Project1Controller sut = new Project1Controller(productRepository, shoppingCart, clientRepository);
+
+        Model model=mock(Model.class);
+        Client client = mock(Client.class);
+        // when
+        sut.daneKlienta("Anna", "Pazera", "Blablabla", "13", "12", "95-050", "Kansas", model);
+
+        // then
+//        verify(clientRepository).addClient(any());
+      //  when(clientRepository.).thenReturn(client);
+
+        ArgumentCaptor<Client> captor = ArgumentCaptor.forClass(Client.class);
+
+
+
+        verify(clientRepository).addClient(captor.capture());
+
+        Client actualArgument=captor.getValue();
+
+     //   Assert.assertThat(actualArgument., equalTo("Anna"));
+        assertThat(actualArgument).isEqualToComparingFieldByField(new Client("Anna", "Pazera", "Blablabla", "13", "12", "95-050", "Kansas"));
+        ProductFactory productFactory = mock(ProductFactory.class);
+        Client client2 = mock(Client.class);
+        when(productFactory.createClient("Anna", "Pazera", "Blablabla", "13", "12", "95-050", "Kansas")).thenReturn(client2);
+    }
+
 
 
 }
