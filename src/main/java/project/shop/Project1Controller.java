@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import static jdk.internal.dynalink.support.NameCodec.encode;
-
 @Controller
 public class Project1Controller {
 
@@ -55,7 +53,7 @@ public class Project1Controller {
             return "redirect:/admin?error= " + error;
 
         }
-        Product product = new Product(name, category, price, description);
+        Product product = new Product(name,  category, price,  description);
         productRepository.createNewProduct(product);
         return "redirect:/AniSklep";
 

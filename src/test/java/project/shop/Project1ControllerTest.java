@@ -38,7 +38,7 @@ public class Project1ControllerTest {
     }
 
     private Product aProduct() {
-        return new Product("frendzel", "akcesoria", "20000", "Lorem ipsum");
+        return new Product( "buty",  "akcesoria",  "20000", "Lorem ipsum");
     }
 
     @Test

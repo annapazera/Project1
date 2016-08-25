@@ -1,20 +1,26 @@
 package project.shop;
 
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 @Component
 public class MyDataBaseProductRepository implements ProductRepository {
-    public MyDataBaseProductRepository(DataSource dataSource) {
-        this.dataSource = dataSource;
+
+    public MyDataBaseProductRepository(JdbcTemplate jdbcTemplate) {
+        this.jdbcTemplate = jdbcTemplate;
     }
 
-   private DataSource dataSource;
+   private JdbcTemplate jdbcTemplate;
 
     @Override
     public boolean productExistsWithGivenName(String name) {
+        for (Product product : getAllProducts()) {
+            if (product.getName().equals(name)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -25,11 +31,18 @@ public class MyDataBaseProductRepository implements ProductRepository {
 
     @Override
     public List<Product> getAllProducts() {
-        return null;
+        return jdbcTemplate.query("SELECT name, category, price, description FROM products",
+        new ProductRowMapper());
     }
 
     @Override
     public Product getProductByName(String name) {
+        for (Product product : getAllProducts()) {
+
+            if (name.equals(product.getName())) {
+                return product;
+            }
+        }
         return null;
     }
 }

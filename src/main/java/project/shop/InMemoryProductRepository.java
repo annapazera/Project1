@@ -16,7 +16,7 @@ public class InMemoryProductRepository implements ProductRepository {
 
     @Override
     public boolean productExistsWithGivenName(String name) {
-        for (Product product : products) {
+        for (Product product : getAllProducts()) {
             if (product.getName().equals(name)) {
                 return true;
             }
@@ -39,7 +39,7 @@ public class InMemoryProductRepository implements ProductRepository {
     @Override
     public Product getProductByName(String name) {
 
-        for (Product product : products) {
+        for (Product product : getAllProducts()) {
 
             if (name.equals(product.getName())) {
                 return product;
