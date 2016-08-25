@@ -9,8 +9,8 @@ import java.util.List;
 /**
  * Created by Anna Kacprzak on 2016-08-12.
  */
-@Scope("singleton")
-@Component
+
+
 public class InMemoryProductRepository implements ProductRepository {
     private List<Product> products = new ArrayList<Product>();
 
