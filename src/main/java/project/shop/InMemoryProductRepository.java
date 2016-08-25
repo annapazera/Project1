@@ -43,8 +43,8 @@ public class InMemoryProductRepository implements ProductRepository {
 
             if (name.equals(product.getName())) {
                 return product;
-            }
-        }
+            }}
+
         return null;
 
     }

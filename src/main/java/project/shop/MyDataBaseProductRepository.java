@@ -1,6 +1,8 @@
 package project.shop;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -12,37 +14,42 @@ public class MyDataBaseProductRepository implements ProductRepository {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-   private JdbcTemplate jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public boolean productExistsWithGivenName(String name) {
-        for (Product product : getAllProducts()) {
-            if (product.getName().equals(name)) {
+        try {
+            Product productByName = getProductByName(name);
+            if (productByName == null) {
+                return false;
+            } else {
                 return true;
             }
+        } catch (EmptyResultDataAccessException e) {
+            return false;
         }
-        return false;
     }
 
     @Override
     public void createNewProduct(Product product) {
-
+        jdbcTemplate.update("INSERT into products ( name, category, price, description) VALUES ( ?, ?, ?, ?)", product.getName(), product.getCategory(), product.getPrice(), product.getDescription());
     }
 
     @Override
     public List<Product> getAllProducts() {
         return jdbcTemplate.query("SELECT name, category, price, description FROM products",
-        new ProductRowMapper());
+                new ProductRowMapper());
     }
 
     @Override
     public Product getProductByName(String name) {
-        for (Product product : getAllProducts()) {
+        Product product = jdbcTemplate.queryForObject("SELECT name, category, price, description FROM products WHERE name = ?", new ProductRowMapper(), name);
 
-            if (name.equals(product.getName())) {
-                return product;
-            }
+        if (product == null) {
+            throw new EmptyResultDataAccessException(1);
         }
-        return null;
+
+        return product;
+
     }
 }
